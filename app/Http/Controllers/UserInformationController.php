@@ -7,6 +7,8 @@ use App\UserInformation;
 
 class UserInformationController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,7 @@ class UserInformationController extends Controller
      */
     public function index()
     {
-        //
+        return view('userinformation.generatepdf');
     }
 
     /**
@@ -24,7 +26,7 @@ class UserInformationController extends Controller
      */
     public function create()
     {
-        return view('userinformation');
+        return view('userinformation.insert');
     }
 
     /**
@@ -84,4 +86,14 @@ class UserInformationController extends Controller
     {
         //
     }
+
+    public function viewgeneratepdf(){
+        echo "Hello World!";
+        return view('userinformation.generatepdf');
+    }
+
+    public function generatepdf(Request $request){
+
+    }
+
 }

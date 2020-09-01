@@ -13,6 +13,13 @@
 
 Route::resource('userinfo', 'UserInformationController');
 
+//Route::get('userinfo/viewgeneratepdf', 'UserInformationController@viewgeneratepdf');
+
+//Route::post('userinfo/generatepdf', 'UserInformationController@generatepdf');
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
