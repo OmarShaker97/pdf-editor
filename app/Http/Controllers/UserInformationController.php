@@ -92,19 +92,26 @@ class UserInformationController extends Controller
     }
 
     public function generatepdf(Request $request){
-        //dd($request);
-        $query = UserInformation::whereId($request->id);
-        //dd($query->first());
+
+        $dict = array("name"=>"Text4","address"=>"Text5","country"=>"Text6", "city"=>"Text7", "telephone"=>"Text8", "fax"=>"Text9", "email"=>"Text10");
+
+        $query = UserInformation::whereId($request->id)->first();
+
         $pdf = new Pdf(storage_path('app/public/KYC_arabic_with_fields.pdf'));
 
-        //dd($pdf->getData());
+        $new_pdf_name = "filled_".$query->name."_".$query->id.".pdf";
 
         $pdf->fillForm([
-            'Text1'=>'Omaaaar',
-            'Text2' => 'Teeeeeest',
+            $dict["name"]=>$query->name,
+            $dict["address"]=>$query->address,
+            $dict["country"]=>$query->country,
+            $dict["city"]=>$query->city,
+            $dict["telephone"]=>$query->telephone,
+            $dict["fax"]=>$query->fax,
+            $dict["email"]=>$query->email,
         ])
         ->needAppearances()
-        ->saveAs(storage_path('app/public/filled.pdf'));
+        ->saveAs(storage_path('app/public/'.$new_pdf_name));
 
         if (!$pdf->saveAs('my.pdf')) {
             $error = $pdf->getError();
