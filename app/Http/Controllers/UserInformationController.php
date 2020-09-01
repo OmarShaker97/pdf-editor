@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserInformation;
+use mikehaertl\pdftk\Pdf;
 
 class UserInformationController extends Controller
 {
 
-
-
-    
     /**
      * Display a listing of the resource.
      *
@@ -97,6 +95,20 @@ class UserInformationController extends Controller
         //dd($request);
         $query = UserInformation::whereId($request->id);
         //dd($query->first());
-    }
+        $pdf = new Pdf('./././KYC_arabic_with_fields.pdf');
 
+        dd($pdf->getData());
+
+        $pdf->fillForm([
+            'Text1'=>'Omaaaar',
+            'Text2' => 'Teeeeeest',
+        ])
+        ->flatten()
+        ->saveAs('filled.pdf');
+
+        if (!$pdf->saveAs('my.pdf')) {
+            $error = $pdf->getError();
+        }
+        
+    }
 }
