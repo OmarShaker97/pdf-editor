@@ -95,16 +95,16 @@ class UserInformationController extends Controller
         //dd($request);
         $query = UserInformation::whereId($request->id);
         //dd($query->first());
-        $pdf = new Pdf('./././KYC_arabic_with_fields.pdf');
+        $pdf = new Pdf(storage_path('app/public/KYC_arabic_with_fields.pdf'));
 
-        dd($pdf->getData());
+        //dd($pdf->getData());
 
         $pdf->fillForm([
             'Text1'=>'Omaaaar',
             'Text2' => 'Teeeeeest',
         ])
-        ->flatten()
-        ->saveAs('filled.pdf');
+        ->needAppearances()
+        ->saveAs(storage_path('app/public/filled.pdf'));
 
         if (!$pdf->saveAs('my.pdf')) {
             $error = $pdf->getError();
