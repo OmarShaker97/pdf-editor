@@ -15,6 +15,13 @@ class CreateUserInformationsTable extends Migration
     {
         Schema::create('user_informations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('country');
+            $table->string('city');
+            $table->string('telephone');
+            $table->string('fax');
+            $table->string('email');
             $table->timestamps();
         });
     }

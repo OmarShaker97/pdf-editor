@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserInformation;
 
 class UserInformationController extends Controller
 {
@@ -23,7 +24,7 @@ class UserInformationController extends Controller
      */
     public function create()
     {
-        //
+        return view('userinformation');
     }
 
     /**
@@ -35,6 +36,8 @@ class UserInformationController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        UserInformation::create($request->all());
     }
 
     /**
