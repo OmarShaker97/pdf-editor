@@ -12,6 +12,10 @@
     "laravel/framework": "5.4.*",
     "laravel/tinker": "~1.0",
     "mikehaertl/php-pdftk": "^0.9.1",
+    "mikehaertl/php-shellcommand": "^1.6",
+    "setasign/fpdf": "1.8",
+    "setasign/fpdi": "^2.3",
+    "tecnickcom/tcpdf": "^6.3",
     "zendframework/zendpdf": "^2.0"
   },
   "require-dev": {

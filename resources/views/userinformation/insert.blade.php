@@ -14,10 +14,7 @@
             <input type="text" name='name' required>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>
-              إسم صاحب
-                الحساب
-            </label>
+            <label>Account Holder Name</label>
           </div>
           </td>
         </tr>
@@ -29,7 +26,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              العنوان
+              Address
             </label>
           </div>
           </td>
@@ -42,7 +39,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              دولة
+              Country
             </label>
           </div>
           </td>
@@ -55,7 +52,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              مدينة
+              City
             </label>
           </div>
           </td>
@@ -69,7 +66,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              تليفون
+              Phone No.
             </label>
           </div>
           </td>
@@ -82,7 +79,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              فاكس
+              Fax
             </label>
           </div>
           </td>
@@ -95,14 +92,14 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-              بريد إلكتروني
+              E-mail
             </label>
           </div>
           </td>
         </tr>
 
         <tr>
-      <td><input type = 'submit' value = "تسجيل" class="btn"/></td>
+      <td><input type = 'submit' value = "Submit" class="btn"/></td>
     </tr>
         
     </table>

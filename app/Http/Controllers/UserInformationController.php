@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserInformation;
 use mikehaertl\pdftk\Pdf;
+use setasign\Fpdi\Fpdi;
 
 class UserInformationController extends Controller
 {
@@ -92,12 +92,11 @@ class UserInformationController extends Controller
     }
 
     public function generatepdf(Request $request){
-
-        $dict = array("name"=>"Text4","address"=>"Text5","country"=>"Text6", "city"=>"Text7", "telephone"=>"Text8", "fax"=>"Text9", "email"=>"Text10");
+        $dict = array("name"=>"TextField4","address"=>"TextField5","country"=>"TextField6", "city"=>"TextField7", "telephone"=>"TextField8", "fax"=>"TextField9", "email"=>"TextField10");
 
         $query = UserInformation::whereId($request->id)->first();
 
-        $pdf = new Pdf(storage_path('app/public/KYC_arabic_with_fields.pdf'));
+        $pdf = new Pdf(storage_path('app/public/KYC_eng.pdf'));
 
         $new_pdf_name = "filled_".$query->name."_".$query->id.".pdf";
 
@@ -113,9 +112,24 @@ class UserInformationController extends Controller
         ->needAppearances()
         ->saveAs(storage_path('app/public/'.$new_pdf_name));
 
+
+      //  dd($pdf->getDataFields());
+
         if (!$pdf->saveAs('my.pdf')) {
             $error = $pdf->getError();
         }
+
         
+        // $fpdi = new Fpdi();
+        
+        // $pages_count = $fpdi->setSourceFile(storage_path('app/public/'.$new_pdf_name));
+
+        // for($i = 1; $i <= $pages_count; $i++){
+        //     $fpdi->AddPage(); 
+        //     $tplIdx = $fpdi->importPage($i);
+        //     $fpdi->useTemplate($tplIdx, 0, 0); 
+        // }
+
+        // $fpdi->Output(storage_path('app/public/'.$new_pdf_name), 'I'); 
     }
 }
