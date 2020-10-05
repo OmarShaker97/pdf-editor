@@ -6,6 +6,7 @@
 body {
   background: url(https://scotch.io/wp-content/uploads/2014/07/61.jpg);
 }
+
 .container {
   font-family: "Roboto";
   width: 600px;
@@ -14,18 +15,22 @@ body {
   background: #fff;
   padding: 10px 50px 50px;
 }
+
 h2 {
   text-align: center;
   margin-bottom: 50px;
 }
+
 h2 small {
   font-weight: normal;
   color: #888;
   display: block;
 }
+
 .footer {
   text-align: center;
 }
+
 .footer a {
   color: #53b2c8;
 }
@@ -35,6 +40,7 @@ h2 small {
   position: relative;
   margin-bottom: 45px;
 }
+
 input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
@@ -43,6 +49,7 @@ input {
   border: none;
   border-bottom: 1px solid #757575;
 }
+
 input:focus {
   outline: none;
 }
@@ -62,8 +69,8 @@ label {
 }
 
 /* active state */
-input:focus ~ label,
-input:valid ~ label {
+input:focus~label,
+input:valid~label {
   top: -20px;
   font-size: 14px;
   color: #5264ae;
@@ -75,6 +82,7 @@ input:valid ~ label {
   display: block;
   width: 300px;
 }
+
 .bar:before,
 .bar:after {
   content: "";
@@ -87,16 +95,18 @@ input:valid ~ label {
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
+
 .bar:before {
   left: 50%;
 }
+
 .bar:after {
   right: 50%;
 }
 
 /* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+input:focus~.bar:before,
+input:focus~.bar:after {
   width: 50%;
 }
 
@@ -112,7 +122,7 @@ input:focus ~ .bar:after {
 }
 
 /* active state */
-input:focus ~ .highlight {
+input:focus~.highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
@@ -123,24 +133,29 @@ input:focus ~ .highlight {
   from {
     background: #5264ae;
   }
+
   to {
     width: 0;
     background: transparent;
   }
 }
+
 @-moz-keyframes inputHighlighter {
   from {
     background: #5264ae;
   }
+
   to {
     width: 0;
     background: transparent;
   }
 }
+
 @keyframes inputHighlighter {
   from {
     background: #5264ae;
   }
+
   to {
     width: 0;
     background: transparent;
@@ -155,7 +170,8 @@ table {
 }
 
 .btn {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
+  /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

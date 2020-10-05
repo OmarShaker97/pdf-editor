@@ -1,5 +1,12 @@
 <?php
+
+
 namespace App\Http\Controllers;
+
+#echo getcwd() . "\n";
+
+require '../vendor/autoload.php';
+#require_once '../vendor/tmw/fpdm/src/fpdm.php';
 
 use Illuminate\Http\Request;
 use App\UserInformation;
@@ -40,6 +47,8 @@ class UserInformationController extends Controller
         //
         //dd($request);
         UserInformation::create($request->all());
+        
+        return redirect()->route('viewgeneratepdf');
     }
 
     /**
@@ -92,13 +101,18 @@ class UserInformationController extends Controller
     }
 
     public function generatepdf(Request $request){
-        $dict = array("name"=>"TextField4","address"=>"TextField5","country"=>"TextField6", "city"=>"TextField7", "telephone"=>"TextField8", "fax"=>"TextField9", "email"=>"TextField10");
+
+        // ----------------------- ORIGINAL CODE PHP-PDFTK ---------------------
+
+        $dict = array("name"=>"TextField4","address"=>"TextField5","country"=>"TextField6", "city"=>"TextField7", "telephone"=>"TextField8", "fax"=>"TextField9", "email"=>"TextField10", "send"=>"RadioButton1", "chkphone"=>"CheckBox1");
 
         $query = UserInformation::whereId($request->id)->first();
 
-        $pdf = new Pdf(storage_path('app/public/KYC_eng.pdf'));
+        $pdf = new Pdf(storage_path('app/public/KYC_eng2.pdf'));
 
         $new_pdf_name = "filled_".$query->name."_".$query->id.".pdf";
+        
+        //$pdf->allow('AllFeatures');
 
         $pdf->fillForm([
             $dict["name"]=>$query->name,
@@ -108,28 +122,59 @@ class UserInformationController extends Controller
             $dict["telephone"]=>$query->telephone,
             $dict["fax"]=>$query->fax,
             $dict["email"]=>$query->email,
+            $dict["send"] => $query->send,
+            $dict['chkphone']=>$query->chkphone
         ])
         ->needAppearances()
+        // ->flatten()
         ->saveAs(storage_path('app/public/'.$new_pdf_name));
-
-
-      //  dd($pdf->getDataFields());
+      
 
         if (!$pdf->saveAs('my.pdf')) {
             $error = $pdf->getError();
         }
 
-        
-        // $fpdi = new Fpdi();
-        
-        // $pages_count = $fpdi->setSourceFile(storage_path('app/public/'.$new_pdf_name));
+        // ----------------------- NATIVE PHP ---------------------
 
-        // for($i = 1; $i <= $pages_count; $i++){
-        //     $fpdi->AddPage(); 
-        //     $tplIdx = $fpdi->importPage($i);
-        //     $fpdi->useTemplate($tplIdx, 0, 0); 
-        // }
+        // $src = storage_path('app/public/'.$new_pdf_name);
 
-        // $fpdi->Output(storage_path('app/public/'.$new_pdf_name), 'I'); 
+        // dd($src);
+
+        // $file = $_GET[$src]  . ".pdf"; 
+
+        // $fp = fopen($file, "r");
+
+        // while (!feof($fp)) { 
+        //     echo fread($fp, 65536); 
+        //     flush(); // This is essential for large downloads 
+        // }  
+          
+        // fclose($fp);
+
+         // ----------------------- FPDM Library ---------------------
+
+        //  $fields = array(
+        //     $dict["name"]=>$query->name,
+        //     $dict["address"]=>$query->address,
+        //     $dict["country"]=>$query->country,
+        //     $dict["city"]=>$query->city,
+        //     $dict["telephone"]=>$query->telephone,
+        //     $dict["fax"]=>$query->fax,
+        //     $dict["email"]=>$query->email,
+        // );
+
+            
+        // $pdf = new FPDM('storage/KYC_eng4.pdf');
+        // $pdf->useCheckboxParser = true; // Checkbox parsing is ignored (default FPDM behaviour) unless enabled with this setting
+        // $pdf->Load($fields, false);
+        // $pdf->Merge();
+        // $pdf->Output('qaf.pdf', 'F');
+        #$pdf = new FPDM(storage_path('app/public/KYC_eng.pdf'));
+        #dd($pdf);
+       # $pdf->Load($fields, false);
+       # $pdf->Merge();
+
+       # $pdf->Output(storage_path('app/public/'.$new_pdf_name), 'D');
+
     }
-}
+} 

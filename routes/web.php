@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('userinfo/viewgeneratepdf', 'UserInformationController@viewgeneratepdf');
+Route::get('userinfo/viewgeneratepdf', 'UserInformationController@viewgeneratepdf')->name('viewgeneratepdf');
 
 Route::post('userinfo/generatepdf', 'UserInformationController@generatepdf');
 

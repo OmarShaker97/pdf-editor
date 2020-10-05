@@ -3,7 +3,9 @@
 </head>
 
 <form method="POST" action="generatepdf">
-    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+  {{@csrf_field()}}  
+  <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+    
     <table>
         
         <tr>

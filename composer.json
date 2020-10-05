@@ -16,6 +16,7 @@
     "setasign/fpdf": "1.8",
     "setasign/fpdi": "^2.3",
     "tecnickcom/tcpdf": "^6.3",
+    "tmw/fpdm": "^2.9",
     "zendframework/zendpdf": "^2.0"
   },
   "require-dev": {

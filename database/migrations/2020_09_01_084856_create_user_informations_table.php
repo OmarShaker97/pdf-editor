@@ -22,6 +22,12 @@ class CreateUserInformationsTable extends Migration
             $table->string('telephone');
             $table->string('fax');
             $table->string('email');
+            $table->integer('send');
+            $table->string('chkphone')->nullable();
+            $table->string('chkemail')->nullable();
+            $table->string('chkmobile_app')->nullable();
+            $table->string('chkfax')->nullable();
+            $table->string('chksms')->nullable();
             $table->timestamps();
         });
     }
